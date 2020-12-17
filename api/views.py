@@ -10,5 +10,11 @@ class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
     permission_classes = (AllowAny,)
 
+class MyProfileView(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+    def get_object(self):
+        return self.request.user
 
-class 
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
